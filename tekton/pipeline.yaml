@@ -1,0 +1,29 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: build-deploy-pipeline
+spec:
+  workspaces:
+  - name: source
+  params:
+  - name: img-name
+    type: string
+  tasks:
+  - name: build
+    taskRef:
+      name: buildah
+    workspaces:
+    - name: source
+      workspace: source
+    params:
+    - name: IMAGE
+      value: $(params.img-name)
+  - name: deploy
+    taskRef:
+      name: openshift-client
+    runAfter:
+    - build
+    params:
+    - name: SCRIPT
+      value: |
+        oc apply -f k8s/

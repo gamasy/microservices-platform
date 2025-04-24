@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: vs-frontend
+spec:
+  hosts:
+  - "app.example.com"
+  gateways:
+  - frontend-gateway
+  http:
+  - route:
+    - destination:
+        host: frontend-service
+        port:
+          number: 80

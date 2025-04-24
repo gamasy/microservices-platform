@@ -1,0 +1,24 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDashboard
+metadata:
+  name: microservices-dashboard
+  labels:
+    app: grafana
+spec:
+  json: |
+    {
+      "title": "Microservices Dashboard For Open Innovation",
+      "panels": [
+        {
+          "title": "Backend CPU Usage For Prod",
+          "type": "graph",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "rate(container_cpu_usage_seconds_total{container=\"backend\"}[5m])",
+              "legendFormat": "CPU Usage"
+            }
+          ]
+        }
+      ]
+    }
