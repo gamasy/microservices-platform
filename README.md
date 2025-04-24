@@ -1,9 +1,8 @@
 Deploy a microservices app on OpenShift with full automated CI/CD, service mesh, and observability 
 
 ## Components
-
-**Frontend**: React.js with  openshift route 
-**Backend**: Node.js REST API with PostgreSQL 
+1. **Frontend**: React.js with  openshift route 
+2. **Backend**: Node.js REST API with PostgreSQL 
 **DB**: HA PostgreSQL 
 **CI/CD**: Tekton pipelines 
 **GitOps**: Argocd to declarative K8S 
